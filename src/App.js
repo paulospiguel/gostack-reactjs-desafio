@@ -83,13 +83,12 @@ function App() {
               </button>
             </li>
           ))}
-          {!repositoriesList.length && (
-            <span>Nenhum repositório cadastrador</span>
-          )}
         </ul>
       </div>
 
-      <hr />
+      {!repositoriesList.length && <span>Nenhum repositório cadastrado.</span>}
+
+      <hr style={{ margin: "10px 0" }} />
 
       <form onSubmit={handleAddRepository} className="form-wrapper">
         <center>
