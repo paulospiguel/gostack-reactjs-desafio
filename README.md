@@ -8,7 +8,7 @@
 
 # Resumo
 
-Entrega do desafio do prontend ReactJS.
+Entrega do desafio do frontend ReactJS.
 
 ## Aprendizagem
 
@@ -28,7 +28,7 @@ Entrega do desafio do prontend ReactJS.
 
 🚀 Requisição API
 
-## Bibliotecas
+## Bibliotecas adicionais
 
 🚀 Axios
 
