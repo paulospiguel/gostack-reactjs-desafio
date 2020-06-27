@@ -9,9 +9,11 @@ function App() {
   const [url, setUrl] = useState("");
   const [techs, setTechs] = useState("");
   const [repositoriesList, setRepositoriesList] = useState([]);
+  const [isLoading, setIsloading] = useState(false);
 
   async function handleAddRepository(evt) {
     evt.preventDefault();
+    setIsloading(true);
     try {
       const arrayTechs = techs.split(",");
 
@@ -30,6 +32,8 @@ function App() {
       console.log(error);
       alert("Ocorreu um erro ao inserir o repositório. Tente novamente!");
     }
+
+    setIsloading(false);
   }
 
   async function handleRemoveRepository(id) {
@@ -63,27 +67,26 @@ function App() {
       <hr style={{ margin: "10px 0" }} />
 
       <div className="repository-list">
-        {!!repositoriesList.length ? (
-          <ul data-testid="repository-list">
-            {repositoriesList.map((repository) => (
-              <li key={repository.id}>
-                <a
-                  href={`${repository.url}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span>{repository.title}</span>
-                </a>
-                <span>{repository.techs.join(", ")}</span>
-                <button onClick={() => handleRemoveRepository(repository.id)}>
-                  Remover
-                </button>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <div>Nenhum repositório registrado</div>
-        )}
+        <ul data-testid="repository-list">
+          {repositoriesList.map((repository) => (
+            <li key={repository.id}>
+              <a
+                href={`${repository.url}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>{repository.title}</span>
+              </a>
+              <span>{repository.techs.join(", ")}</span>
+              <button onClick={() => handleRemoveRepository(repository.id)}>
+                Remover
+              </button>
+            </li>
+          ))}
+          {!repositoriesList.length && (
+            <span>Nenhum repositório cadastrador</span>
+          )}
+        </ul>
       </div>
 
       <hr />
@@ -129,6 +132,7 @@ function App() {
           />
         </div>
         <button type="submit">Adicionar</button>
+        {isLoading && <span style={{ marginLeft: "5px" }}>Loading...</span>}
       </form>
     </div>
   );
